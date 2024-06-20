@@ -1,13 +1,12 @@
 # Setlist Seekers
 
-About the Project:
+About this app:
+
+This app is for the concert goer that loves to know every song. Here you can make an account and start looking for artists whose concert you are attending. 
+Once you find the artist you're looking for add a setlist you feel works for you.
+After, that you add the concert and the projected setlist to your account so you can always come back
 
 
 
+[Back End](https://github.com/jalencodes/SS-Server) 
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
-
-Currently, two official plugins are available:
-
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
