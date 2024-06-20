@@ -22,10 +22,22 @@ export default function SignUpForm()
 
     async function handleSubmit()
     {
+        try
+        {
         const requestURL = "http://localhost:8888/api/user/signup"
         const response = await axios.post(requestURL, formData)
-        const user = response.data
-        console.log(user);
+        const userData = response.data
+        setUser({
+            name: userData.name,
+            username: userData.username,
+            email: userData.email,
+            city: userData.city,
+            state: userData.state,
+        })
+        console.log();
+        } catch (error) {
+            console.log(error);
+        }
     }
 
     

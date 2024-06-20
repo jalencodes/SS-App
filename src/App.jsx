@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, createContext } from 'react'
 import axios from 'axios'
 import {Route, Routes} from 'react-router-dom'
 
@@ -14,23 +14,41 @@ import ArtistSearch from './pages/ArtistSearch'
 import { useParams } from 'react-router-dom'
 // import ConnectSpotify from './pages/ConnectSpotify'
 
+export const Context = createContext()
 
 function App() {
 
+  const [user, setUser] = useState({        
+      name: '',
+      username: '',
+      email: '',
+      password: '',
+      city: '',
+      state: ''
+  })
+
+  const [signedIn, setSignedIn] = useState(false)
+
   return (
     <>
-      <NavBar />
+
+      <Context.Provider value={[user, setUser]}>
+        
+        <NavBar />
+
+        <h1>{user.name}</h1>
 
 
-      <Routes>
-        <Route path='/' element={<Home/>}></Route>
-        <Route path='/concerts' element={<Concerts/>}></Route>
-        <Route path='/signin' element={<SignIn/>}></Route>
-        <Route path='/signup' element={<SignUp/>}></Route>
-        {/* <Route path='/search/artist/:artistName' element={<ArtistSearch/>}></Route> */}
-        {/* <Route path='/connectSpotify' element={<ConnectSpotify/>}></Route> */}
-      </Routes>
+        <Routes>
+          <Route path='/' element={<Home/>}></Route>
+          <Route path='/concerts' element={<Concerts/>}></Route>
+          <Route path='/signin' element={<SignIn/>}></Route>
+          <Route path='/signup' element={<SignUp/>}></Route>
+          {/* <Route path='/search/artist/:artistName' element={<ArtistSearch/>}></Route> */}
+          {/* <Route path='/connectSpotify' element={<ConnectSpotify/>}></Route> */}
+        </Routes>
 
+      </Context.Provider>
       
 
 

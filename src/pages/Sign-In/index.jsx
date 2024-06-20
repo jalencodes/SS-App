@@ -1,11 +1,13 @@
-import { useState, useRef, useEffect } from "react"
+import { useState, useRef, useEffect, useContext } from "react"
 import { Link } from "react-router-dom"
 import axios from "axios"
-
+import { Context } from "../../App"
 
 
 export default function SignInForm()
 {
+
+    const [user, setUser] = useContext(Context)
     const [formData, setFormData] = useState({
         email: '',
         password: ''
@@ -20,10 +22,22 @@ export default function SignInForm()
 
     async function handleSubmit()
     {
-        const requestURL = "http://localhost:8888/api/user/login"
-        const response = await axios.post(requestURL, formData)
-        const user = response.data
-        console.log(user);
+        try
+        {
+            const requestURL = "http://localhost:8888/api/user/login"
+            const response = await axios.post(requestURL, formData)
+            const userData = response.data
+            setUser({
+                name: userData.name,
+                username: userData.username,
+                email: userData.email,
+                city: userData.city,
+                state: userData.state,
+            })
+            console.log(user);
+        } catch (error) {
+            console.log(error);
+        }
     }
 
 
@@ -34,7 +48,7 @@ export default function SignInForm()
                 <label>Email Address</label>
                 <input type="text" placeholder="Enter email" onChange={handleChange} name="email"/>
                 <label>Password</label>
-                <input type="text" placeholder="Password" onChange={handleChange} name="password" />
+                <input type="password" placeholder="Password" onChange={handleChange} name="password" />
                 <button onClick={handleSubmit}>Submit</button>
             </div>
 
