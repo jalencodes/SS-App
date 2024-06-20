@@ -1,0 +1,15 @@
+.nav{
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    padding-top: 5%;
+    font-size: 120%
+}
+
+.a{
+  font-size: 170%;
+}
+
+h1{
+  font-size: 200%;
+}

@@ -1,39 +1,37 @@
 import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
-import Form from './components/Form'
 import axios from 'axios'
+import {Route, Routes} from 'react-router-dom'
+
+
+import './App.css'
+import NavBar from './components/NavBar'
+import Form from './components/Form'
+import Home from './pages/Home'
+import Concerts from './pages/Concerts'
+import SignIn from './pages/Sign-In'
+import ArtistSearch from './pages/ArtistSearch'
+import { useParams } from 'react-router-dom'
+// import ConnectSpotify from './pages/ConnectSpotify'
+
 
 function App() {
 
-  const [artists, setArtists] = useState([])
-
-  const getArtists = async (artistName) => {
-    try
-    {
-      const artistQuery = artistName.replace(' ', '+')
-      const requestURL = `http://localhost:3000/api/setlist/search/artist?name=${artistQuery}`
-      const response = await axios.get(requestURL)
-      const data = response.data
-      console.log(data);
-
-    } catch (error){
-      console.log(error)
-    }
-  }
-  
-
   return (
     <>
+      <NavBar />
 
-      <h1>Setlist Seekers</h1> 
-      <p>
-        If you love going to a live show, and being the most prepared then this is the place for you.
-        We want you to make sure you can sing, yell, rap every lyric back to your favorite artists.
-      </p>
 
-      <Form artistsearch={getArtists}/>
+      <Routes>
+        <Route path='/' element={<Home/>}></Route>
+        <Route path='/concerts' element={<Concerts/>}></Route>
+        <Route path='/signin' element={<SignIn/>}></Route>
+        {/* <Route path='/search/artist/:artistName' element={<ArtistSearch/>}></Route> */}
+        {/* <Route path='/connectSpotify' element={<ConnectSpotify/>}></Route> */}
+      </Routes>
+
+      
+
+
 
 
 

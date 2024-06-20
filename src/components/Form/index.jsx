@@ -1,5 +1,6 @@
-import { useState, useEffect } from 'react'
-
+import { useState, useEffect} from 'react'
+import { redirect, redirectDocument } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 function Form({artistsearch}){
 
     const [formData, setFormData] = useState({
@@ -19,10 +20,11 @@ function Form({artistsearch}){
 
 
     return (
-        <form onSubmit={handleSubmit}>
-            <input type="text" name="searchTerm" value={formData.searchTerm} id="" onChange={handleChange}/>
-            <input type="submit" value="Search"  />
-        </form>
+        <>
+            <input type="text" name="searchTerm" placeholder="Who's the lucky artist?" value={formData.searchTerm} id="" onChange={handleChange}/>
+            <Link to={`/search/artist/${formData.searchTerm}`}>Let's Go</Link> 
+        </>
+
     )
 }
 
